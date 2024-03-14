@@ -1,0 +1,105 @@
+
+drop table tbl_admin;
+
+create table tbl_admin(
+    id varchar(20) not null,
+    password varchar(20) not null,
+    name varchar(20) not null,
+    email varchar(30) not null
+);
+
+insert into tbl_admin values('test', 'test', '김경민', 'test@gmail.com');
+select * from tbl_admin;
+commit;
+
+-- 카테고리 -----
+drop table tbl_category;
+create table tbl_category(
+    cat_num int primary key auto_increment,
+    code varchar(10) not null,
+    cat_name varchar(20) not null
+);
+-- num -> int 
+-- varchar2 --> varchar
+-- 상품 테이블
+create table tbl_product(
+    pnum int primary key auto_increment,    -- 상품번호
+    pname varchar(50) not null,    -- 상품명
+    pcategory_fk varchar(20) not null, -- 카테고리
+    pcompany varchar(50),     -- 제조회사
+    pimage varchar(50),        -- 상품이미지
+    pqty int default 0,    -- 수량
+    price int default 0, -- 가격
+    pspec varchar(20),         -- 상품사양(인기, 추천, 신규)
+    pcontent varchar(300),     -- 상품상세  
+    point int default 0,  -- 상품별 포인트
+    pinput_date date            -- 등록 날짜
+);
+
+-- 멤버 테이블
+drop table shopMember;
+create table shopMember(
+    id varchar(20) unique not null, -- 외래키로 사용되기 때문에 unique 제약조건 추가
+    pw varchar(200) not null,
+    name varchar(50) not null,
+    tel varchar(20) not null,
+    email varchar(50) not null,
+    -- addr varchar(100) not null,
+    zipcode varchar(5),
+    road_addr varchar(100),
+    detail_addr varchar(100),
+    rdate timestamp not null
+);
+
+-- insert into shopMember values('test', '1234', '김길동', '1111', 'test@gmail.com', '서울', now());
+select * from shopMember;
+commit;
+
+-- 장바구니 테이블
+drop table tbl_cart;
+-- 외래키는 식별키(primary key, unqiue제약조건)이어야 한다.
+create table tbl_cart(
+    cart_num int primary key auto_increment,
+    id varchar(20),
+    pnum int,
+    pqty int default 1,
+    indate timestamp not null,
+    
+    foreign key (id) references shopMember(id),
+    foreign key (pnum) references tbl_product(pnum)
+);
+
+select * from tbl_cart;
+
+
+
+create table winia_product(
+    pnum int auto_increment primary key,        -- 상품번호
+    pname varchar(50) not null,        -- 상품명
+    pcategory_fk varchar(20) not null, -- 카테고리
+    pcompany varchar(50) not null,       -- 제조회사
+    pimage varchar(100),                -- 상품이미지
+    pqty int default 0,           		-- 수량
+    price int default 0,         		-- 가격
+    pspec varchar(20),                 -- 상품사양(인기,추천,신규)
+    pcontent varchar(300),             -- 상품상세설명
+    point int default 0,          	-- 상품별 포인트
+    pinput_date date                    -- 등록날짜
+);
+
+create table winia_Member(
+	no int auto_increment primary key,
+    id varchar(20) unique not null, -- 유니크낫널 = 프라이머리키
+    pw varchar(200) not null,
+    name varchar(50) not null,
+    age int not null,
+    tel varchar(20) not null,
+    email varchar(50) not null,
+    zipcode varchar(5) not null,			-- 우편번호
+    road_addr varchar(100) not null,		-- 주소
+    detail_addr varchar(100) not null,		-- 상세주소
+    plus_addr varchar(100) not null,		-- 참고사항
+    rdate datetime default now()
+);
+
+

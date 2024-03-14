@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <!-- <properties resource="mybatis/db.properties"/> root-context에서 연결 -->
+  
+  <typeAliases>  			<!-- 별칭을 사용하겠다 -->
+  	<typeAlias type="kr.ezen.winia.domain.BoardDTO" alias="BoardDTO"/>
+  	<typeAlias type="kr.ezen.winia.domain.MemberDTO" alias="MemberDTO"/>
+  	<typeAlias type="kr.ezen.winia.domain.ReplyDTO" alias="ReplyDTO"/>
+  	<typeAlias type="kr.ezen.winia.domain.AdminDTO" alias="AdminDTO"/>
+  	<typeAlias type="kr.ezen.winia.domain.CategoryDTO" alias="CategoryDTO"/>
+  	<typeAlias type="kr.ezen.winia.domain.BrandDTO" alias="BrandDTO"/>
+  	<typeAlias type="kr.ezen.winia.domain.ProductDTO" alias="ProductDTO"/>
+  	<typeAlias type="kr.ezen.winia.domain.CartDTO" alias="CartDTO"/>
+  </typeAliases>
+  
+  <!-- Spring에서 진행되서 JSP에서 설정한 파일은 주석처리 -->
+<!--   <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <mappers>
+    <mapper resource="myBatis/MemberMapper.xml"/>
+  </mappers> -->
+  
+</configuration>
